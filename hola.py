@@ -9,10 +9,19 @@ class persona():
         print(
             f"Hola, soy {self.nombre}, tengo {self.edad} años, soy {self.genero} y trabajo como {self.ocupacion}.")
 
+    def calcularDesc(self):
+        try:
+            if self.edad > 18:
+                print("tienes un 20 % de descuento")
+            else:
+                print("No tienes descuento")
+        except TypeError:
+            print("datos invalidos")
+
 
 def llenarlista():
     nom = input("INGRESE EL NOMBRE:")
-    edad = input("INGRESE LA EDAD:")
+    edad = int(input("INGRESE LA EDAD:"))
     gene = input("INGRESE EL GENERO:")
     ocp = input("INGRESE LA OCUPACION:")
     return nom, edad, gene, ocp
@@ -33,7 +42,8 @@ while True:
 1:Registrar persona
 2:Eliminar persona
 3:Mostrar personas
-4:Salir                                                                                                 
+4:Salir         
+5:Calcular promo                                                                                        
 """)
     opc = int(input("Ingrese una opción: "))
     match opc:
@@ -50,5 +60,10 @@ while True:
         case 4:
             print("ADIOS")
             break
+        case 5:
+            try:
+                person.calcularDesc()
+            except Exception:
+                print("inserte persona")
         case _:
             print("DATO INVALIDO")
