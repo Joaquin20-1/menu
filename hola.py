@@ -36,6 +36,21 @@ def eliminarPorPosci(pos, tupla: tuple):
     return tupla[:pos] + tupla[pos+1:]
 
 
+def ordenamientoburbuja(tupla: tuple[persona]):
+    lista = list(tupla)
+    for i in range(len(tupla)-1):
+        for j in range(len(tupla)-1-i):
+            if lista[j].edad > lista[j+1].edad:
+                lista[j], lista[j+1] = lista[j+1], lista[j]
+
+    return tuple(lista)
+
+
+def suma(a):
+    a += 10
+    return a
+
+
 tupla = tuple()
 while True:
     print("""
@@ -43,7 +58,8 @@ while True:
 2:Eliminar persona
 3:Mostrar personas
 4:Salir         
-5:Calcular promo                                                                                        
+5:Calcular promo  
+6:ordenar codigo                                                                                     
 """)
     opc = int(input("Ingrese una opción: "))
     match opc:
@@ -65,5 +81,8 @@ while True:
                 person.calcularDesc()
             except Exception:
                 print("inserte persona")
+        case 6:
+            tupla = ordenamientoburbuja(tupla)
+            recorrer(tupla)
         case _:
             print("DATO INVALIDO")
