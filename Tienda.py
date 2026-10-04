@@ -212,6 +212,17 @@ def eliminarProducto(tupla: tuple[Producto]):
         return 1
 
 
+def mayorPrecio(tupla3):
+    tupla = list(tupla3)
+    May = ordenamientoPrecioD(tupla)
+    return May[0]
+
+
+def menorStock(tupla4):
+    tupla = list(tupla4)
+
+    
+
 tuplaProductos = tuple()
 while True:
     print("""===== SISTEMA DE PRODUCTOS =====
@@ -283,6 +294,16 @@ while True:
                     case _:
                         print("Opcion invalida")
         case 9:
+            print()
+
+        case 10:
+                    print()
+
+        case 11:
+                    print()
+
+        case 12:
+                    print()
             opc = infoOrdenar(tuplaProductos)
             if opc == 0:
                 print("tupla vacia")
