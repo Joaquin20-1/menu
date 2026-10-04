@@ -221,7 +221,6 @@ def mayorPrecio(tupla3):
 def menorStock(tupla4):
     tupla = list(tupla4)
 
-    
 
 tuplaProductos = tuple()
 while True:
@@ -297,27 +296,29 @@ while True:
             print()
 
         case 10:
-                    print()
+            print()
 
         case 11:
-                    print()
+            print()
 
         case 12:
-                    print()
+            print()
             opc = infoOrdenar(tuplaProductos)
             if opc == 0:
                 print("tupla vacia")
             else:
                 match opc:
                     case 1:
-                        resultadoStockA = ordenamientoPorStockA(tuplaProductos)
+                        resultadoStockA = ordenamientoPorStockA(
+                            tuplaProductos)
                         if resultadoStockA == 1:
                             print("Stock ordenado Asendente")
                         else:
                             tuplaProductos = resultadoStockA
                             print("Stock ordenado Asendente")
                     case 2:
-                        resultadoStockD = ordenamientoPorStockD(tuplaProductos)
+                        resultadoStockD = ordenamientoPorStockD(
+                            tuplaProductos)
                         if resultadoStockD == 1:
                             print("Tupla ordenada Desendentemente")
                         else:
