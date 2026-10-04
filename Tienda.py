@@ -217,7 +217,8 @@ def mayorPrecio(tupla3):
     if May != 1:
         return f"{May[0].nombre} \nPrecio: {May[0].precio}"
     else:
-        return 0 
+        return 0
+
 
 def menorStock(tupla4):
     Men = ordenamientoPorStockA(tupla4)
@@ -226,20 +227,21 @@ def menorStock(tupla4):
     else:
         return 0
 
-def filtrarCategoria(tupla:tuple[Producto]):
+
+def filtrarCategoria(tupla: tuple[Producto]):
     busq = input("Ingrese la categoria a filtrar: ")
     cont = 1
     for i in tupla:
         if i.categoria == busq:
-            print(f"{cont} |\t{i.codigo}| {i.nombre} | {i.precio} | {i.stock}| {i.categoria}")
-            cont+=1
-    
+            print(
+                f"{cont} |\t{i.codigo}| {i.nombre} | {i.precio} | {i.stock}| {i.categoria}")
+            cont += 1
 
 
-def calcInventario(tupla:tuple[Producto]):
+def calcInventario(tupla: tuple[Producto]):
     total = 0.0
     for i in tupla:
-        total+= i.precio * i.stock
+        total += i.precio * i.stock
     print(f"El valor total del inventario es: {total}")
 
 
