@@ -102,6 +102,38 @@ def buscarProducto(tupla):
         print("Producto encontrado:", buscar)
 
 
+def infoOrdenar(tupla):
+    if listaVacia(tupla) == 1:
+        return 0
+    else:
+        print("""1. Menor → mayor
+2. Mayor → menor""")
+        opc = int(input("ingrese una opcion"))
+        return opc
+
+
+def ordenamientoPrecioA(tupla1):
+    tupla = list(tupla1)
+    if len(tupla) == 1:
+        return 1
+    for i in range(len(tupla)-1):
+        for j in range(len(tupla)-1-i):
+            if tupla[j].precio > tupla[j+1].precio:
+                tupla[j], tupla[j+1] = tupla[j+1], tupla[j]
+    return list(tupla)
+
+
+def ordenamientoPrecioD(tupla2):
+    tupla = list(tupla2)
+    if len(tupla) == 1:
+        return 1
+    for i in range(len(tupla)-1):
+        for j in range(len(tupla)-1-i):
+            if tupla[j].precio < tupla[j+1].precio:
+                tupla[j+1], tupla[j] = tupla[j], tupla[j+1]
+    return list(tupla)
+
+
 tuplaProductos = tuple()
 while True:
     print("""===== SISTEMA DE PRODUCTOS =====
@@ -144,7 +176,26 @@ while True:
             disminuirStock(tuplaProductos)
 
         case 8:
-            print()
-
+            opc = infoOrdenar(tuplaProductos)
+            if opc == 0:
+                print("tupla vacia")
+            else:
+                match opc:
+                    case 1:
+                        resultadoA = ordenamientoPrecioA(tuplaProductos)
+                        if resultadoA == 1:
+                            print("Tupla ordenada Asendente")
+                        else:
+                            tuplaProductos = resultadoA
+                            print("Tupla ordenada Asendente")
+                    case 2:
+                        resultadoD = ordenamientoPrecioD(tuplaProductos)
+                        if resultadoD == 1:
+                            print("Tupla ordenada Desendentemente")
+                        else:
+                            tuplaProductos = resultadoD
+                            print("Tupla ordenada Desendentemente")
+                    case _:
+                        print("Opcion invalida")
         case 9:
             print()
