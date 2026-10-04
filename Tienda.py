@@ -134,6 +134,17 @@ def ordenamientoPrecioD(tupla2):
     return list(tupla)
 
 
+def mayorPrecio(tupla3):
+    tupla = list(tupla3)
+    May = ordenamientoPrecioD(tupla)
+    return May[0]
+
+
+def menorStock(tupla4):
+    tupla = list(tupla4)
+
+    
+
 tuplaProductos = tuple()
 while True:
     print("""===== SISTEMA DE PRODUCTOS =====
@@ -199,3 +210,12 @@ while True:
                         print("Opcion invalida")
         case 9:
             print()
+
+        case 10:
+                    print()
+
+        case 11:
+                    print()
+
+        case 12:
+                    print()
