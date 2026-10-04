@@ -120,7 +120,7 @@ def ordenamientoPrecioA(tupla1):
         for j in range(len(tupla)-1-i):
             if tupla[j].precio > tupla[j+1].precio:
                 tupla[j], tupla[j+1] = tupla[j+1], tupla[j]
-    return list(tupla)
+    return tuple(tupla)
 
 
 def ordenamientoPrecioD(tupla2):
@@ -131,7 +131,18 @@ def ordenamientoPrecioD(tupla2):
         for j in range(len(tupla)-1-i):
             if tupla[j].precio < tupla[j+1].precio:
                 tupla[j+1], tupla[j] = tupla[j], tupla[j+1]
-    return list(tupla)
+    return tuple(tupla)
+
+
+def ordenamientoPorStockA(tupla):
+    lista = list(tupla)
+    if len(tupla) == 1:
+        return 1
+    for i in range(len(lista)-1):
+        for j in range(len(tupla)-1-i):
+            if lista[j].stock > lista[j+1].stock:
+                lista[j], lista[j+1] = lista[j+1], lista[j]
+    return tuple(lista)
 
 
 tuplaProductos = tuple()
