@@ -8,7 +8,7 @@ class Producto():
 
     def mostrar(self):
         print("codigo:", self.codigo,
-              "\nNombre:", self.codigo,
+              "\nNombre:", self.nombre,
               "\nPrecio:", self.precio,
               "\nStock:", self.stock,
               "\nCategoria:", self.categoria)
@@ -120,7 +120,7 @@ def ordenamientoPrecioA(tupla1):
         for j in range(len(tupla)-1-i):
             if tupla[j].precio > tupla[j+1].precio:
                 tupla[j], tupla[j+1] = tupla[j+1], tupla[j]
-    return list(tupla)
+    return tuple(tupla)
 
 
 def ordenamientoPrecioD(tupla2):
@@ -131,7 +131,85 @@ def ordenamientoPrecioD(tupla2):
         for j in range(len(tupla)-1-i):
             if tupla[j].precio < tupla[j+1].precio:
                 tupla[j+1], tupla[j] = tupla[j], tupla[j+1]
-    return list(tupla)
+    return tuple(tupla)
+
+
+def ordenamientoPorStockA(tupla):
+    lista = list(tupla)
+    if len(tupla) == 1:
+        return 1
+    for i in range(len(lista)-1):
+        for j in range(len(tupla)-1-i):
+            if lista[j].stock > lista[j+1].stock:
+                lista[j], lista[j+1] = lista[j+1], lista[j]
+    return tuple(lista)
+
+
+def ordenamientoPorStockD(tupla):
+    lista = list(tupla)
+    if len(tupla) == 1:
+        return 1
+    for i in range(len(lista)-1):
+        for j in range(len(tupla)-1-i):
+            if lista[j].stock < lista[j+1].stock:
+                lista[j], lista[j+1] = lista[j+1], lista[j]
+    return tuple(lista)
+
+
+def modificarProducto(tupla: tuple[Producto]):
+    codigo = input("Ingrese el codigo:")
+    validar = validarCodigo(codigo, tupla)
+    if validar == 2:
+        print("lista vacia")
+    elif validar == 0:
+        print(""""1. Modificar nombre
+2. Modificar precio
+3. Modificar categoría
+4. Modificar stock
+5. Cancelar""")
+        opc = int(input("Ingrese una opcion:"))
+        posicion = 0
+        for indic, i in enumerate(tupla):
+            if i.codigo == codigo:
+                posicion = indic
+        match opc:
+            case 1:
+                nom = input("INDIQUE EL NUEVO NOMBRE:")
+                tupla[posicion].nombre = nom
+            case 2:
+                prec = float(input("INDIQUE EL NUEVO PRECIO:"))
+                tupla[posicion].precio = prec
+            case 3:
+                cat = input("INDIQUE LA NUEVA CATEGORIA:")
+                tupla[posicion].categoria = cat
+            case 4:
+                stock = int(input("INDIQUE EL NUEVO STOCK:"))
+                tupla[posicion].stock = stock
+            case 5:
+                print("OPCION CANCELADA")
+            case _:
+                print("OPCION invalida")
+
+    else:
+        print("codigo no encontrado")
+
+
+def eliminarProducto(tupla: tuple[Producto]):
+    codigo = input("Ingrese el codigo:")
+    validar = validarCodigo(codigo, tupla)
+    if validar == 2:
+        return 0
+    elif validar == 0:
+        lista = list(tupla)
+        posicion = 0
+        for indic, i in enumerate(tupla):
+            if i.codigo == codigo:
+                posicion = indic
+        lista.pop(posicion)
+        print("producto eliminado")
+        return tuple(lista)
+    else:
+        return 1
 
 
 def mayorPrecio(tupla3):
@@ -178,9 +256,16 @@ while True:
         case 3:
             buscarProducto(tuplaProductos)
         case 4:
-            print()
+            modificarProducto(tuplaProductos)
         case 5:
-            print()
+            eliminar = eliminarProducto(tuplaProductos)
+            if eliminar == 0:
+                print("tupla vacia")
+            elif eliminar == 1:
+                print("codigo no encontrado")
+            else:
+                tuplaProductos = eliminar
+
         case 6:
             aumentarStock(tuplaProductos)
         case 7:
@@ -195,17 +280,17 @@ while True:
                     case 1:
                         resultadoA = ordenamientoPrecioA(tuplaProductos)
                         if resultadoA == 1:
-                            print("Tupla ordenada Asendente")
+                            print("Precio ordenado Asendente")
                         else:
                             tuplaProductos = resultadoA
-                            print("Tupla ordenada Asendente")
+                            print("Precio ordenado Asendente")
                     case 2:
                         resultadoD = ordenamientoPrecioD(tuplaProductos)
                         if resultadoD == 1:
-                            print("Tupla ordenada Desendentemente")
+                            print("Precio ordenado Desendentemente")
                         else:
                             tuplaProductos = resultadoD
-                            print("Tupla ordenada Desendentemente")
+                            print("Precio ordenado Desendentemente")
                     case _:
                         print("Opcion invalida")
         case 9:
@@ -219,3 +304,24 @@ while True:
 
         case 12:
                     print()
+            opc = infoOrdenar(tuplaProductos)
+            if opc == 0:
+                print("tupla vacia")
+            else:
+                match opc:
+                    case 1:
+                        resultadoStockA = ordenamientoPorStockA(tuplaProductos)
+                        if resultadoStockA == 1:
+                            print("Stock ordenado Asendente")
+                        else:
+                            tuplaProductos = resultadoStockA
+                            print("Stock ordenado Asendente")
+                    case 2:
+                        resultadoStockD = ordenamientoPorStockD(tuplaProductos)
+                        if resultadoStockD == 1:
+                            print("Tupla ordenada Desendentemente")
+                        else:
+                            tuplaProductos = resultadoStockD
+                            print("Tupla ordenada Desendentemente")
+                    case _:
+                        print("Opcion invalida")
