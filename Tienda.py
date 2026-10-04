@@ -294,15 +294,6 @@ while True:
                         print("Opcion invalida")
         case 9:
             print()
-
-        case 10:
-            print()
-
-        case 11:
-            print()
-
-        case 12:
-            print()
             opc = infoOrdenar(tuplaProductos)
             if opc == 0:
                 print("tupla vacia")
@@ -326,3 +317,12 @@ while True:
                             print("Tupla ordenada Desendentemente")
                     case _:
                         print("Opcion invalida")
+
+        case 10:
+            print()
+
+        case 11:
+            print()
+
+        case 12:
+            print()
