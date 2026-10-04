@@ -213,13 +213,34 @@ def eliminarProducto(tupla: tuple[Producto]):
 
 
 def mayorPrecio(tupla3):
-    tupla = list(tupla3)
-    May = ordenamientoPrecioD(tupla)
-    return May[0]
-
+    May = ordenamientoPrecioD(tupla3)
+    if May != 1:
+        return f"{May[0].nombre} \nPrecio: {May[0].precio}"
+    else:
+        return 0 
 
 def menorStock(tupla4):
-    tupla = list(tupla4)
+    Men = ordenamientoPorStockA(tupla4)
+    if Men != 1:
+        return f"{Men[0].nombre} \nStock: {Men[0].stock}"
+    else:
+        return 0
+
+def filtrarCategoria(tupla:tuple[Producto]):
+    busq = input("Ingrese la categoria a filtrar: ")
+    cont = 1
+    for i in tupla:
+        if i.categoria == busq:
+            print(f"{cont} |\t{i.codigo}| {i.nombre} | {i.precio} | {i.stock}| {i.categoria}")
+            cont+=1
+    
+
+
+def calcInventario(tupla:tuple[Producto]):
+    total = 0.0
+    for i in tupla:
+        total+= i.precio * i.stock
+    print(f"El valor total del inventario es: {total}")
 
 
 tuplaProductos = tuple()
@@ -319,10 +340,24 @@ while True:
                         print("Opcion invalida")
 
         case 10:
-            print()
+            res = mayorPrecio(tuplaProductos)
+            if res == 0:
+                print("La tupla solo tiene un producto.")
+            else:
+                print("El producto con mayor precio es: ", res)
 
         case 11:
-            print()
+            res = menorStock(tuplaProductos)
+            if res == 0:
+                print("La tupla solo tiene un producto.")
+            else:
+                print("El producto con menor stock es: ", res)
 
         case 12:
-            print()
+            filtrarCategoria(tuplaProductos)
+
+        case 13:
+            calcInventario(tuplaProductos)
+
+        case 14:
+            break
